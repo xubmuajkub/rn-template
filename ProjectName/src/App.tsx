@@ -23,6 +23,7 @@ import AppToastProvider from '@/core/AppToastProvider';
 import {rneuiTheme, tw} from '@/libs';
 import i18next from '@/localization';
 import RootNavigator from '@/navigation/RootNavigation';
+import {fcmService} from '@/services/FcmService';
 import NavigationService from '@/services/navigationService';
 import store from '@/store';
 import {RootStackParamList} from '@/types';
@@ -33,7 +34,7 @@ function App() {
 
   React.useEffect(() => {
     SplashScreen.hide();
-    // fcmService.requestPermission(() => null);
+    fcmService.requestPermission(() => null);
   }, []);
 
   useDeviceContext(tw);

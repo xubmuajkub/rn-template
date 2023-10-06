@@ -37,7 +37,7 @@ function RootNavigator() {
   }
   return (
     <RootStack.Navigator>
-      {!authInfo ? (
+      {authInfo ? (
         <RootStack.Screen
           name="Tab"
           component={TabNavigator}
