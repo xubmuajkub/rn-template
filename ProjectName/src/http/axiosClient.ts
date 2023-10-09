@@ -1,18 +1,20 @@
 import axios from 'axios';
+import querystring from 'query-string';
+import Config from 'react-native-config';
 
-import { StorageKeys } from '@/constants';
-import { AsyncStorageUtils, parseParams } from '@/utils';
+import {StorageKeys} from '@/constants';
+import {AsyncStorageUtils} from '@/utils';
 
-const HOST = process.env.EXPO_PUBLIC_HOST;
-const PORT = process.env.EXPO_PUBLIC_PORT;
+const HOST = Config.HOST;
+const PORT = Config.PORT;
 
 export const baseURL = `${HOST}${PORT !== '80' ? ':' + PORT : ''}`;
 export const apiUrl = `${baseURL}/api`;
 
 const instance = axios.create({
   baseURL: apiUrl,
-  headers: { Accept: 'application/json' },
-  paramsSerializer: (params: any) => parseParams(params),
+  headers: {Accept: 'application/json'},
+  paramsSerializer: (params: any) => querystring.stringify(params),
 });
 
 instance.interceptors.request.use(async config => {
